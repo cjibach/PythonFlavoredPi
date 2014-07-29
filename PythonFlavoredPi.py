@@ -6,6 +6,7 @@
 import Tkinter
 import tkMessageBox
 import string
+import random
 
 global clickedQ
 clickedQ = False
@@ -46,7 +47,20 @@ def sendResults():
       getAnswer()
 
 def getAnswer():
-   print = texts[1]
+   results = Tkinter.Tk()
+   labelQ = Tkinter.Label( results, bg = "white", width = 45, height = 2, bd = 5, text = texts[0].get())
+   labelA1 = Tkinter.Label( results, bg = "red", width = 45, height = 2, bd = 5, text = texts[1].get())
+   labelA2 = Tkinter.Label( results, bg = "red", width = 45, height = 2, bd = 5, text = texts[2].get())
+   randomA = [0, 1]
+   answer = random.choice(randomA)
+   if (answer == 0):
+      labelA1.config(bg = "green")
+   else:
+      labelA2.config(bg = "green")
+   labelQ.pack()
+   labelA1.pack()
+   labelA2.pack()
+   results.mainloop()
 
 top = Tkinter.Tk()
 texts = [ Tkinter.StringVar(value = p) for p in prompts ]
